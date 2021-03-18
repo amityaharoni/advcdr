@@ -6,7 +6,6 @@ function Report({ posts }) {
   export async function getStaticProps() {
     // Call an external API endpoint to get posts
     const res = await fetch('/api/report')
-    console.log(res);
     const posts = await res.json()
   
     // By returning { props: { posts } }, the Blog component

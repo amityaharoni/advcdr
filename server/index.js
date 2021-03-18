@@ -1,26 +1,26 @@
-// const db = require('./models/index');
-// const models = require('./models');
-// const Caller = require('./modules/caller');
-
-// // Find all users
-// Caller.findAll().then(callers => {
-//     callers.every(caller => {caller.CalledNumbers().then(res => console.log(res))}); // true
-// });
-
 const express = require('express');
 const app = express();
 const port = 8080;
+const db = require("./models");
 
 app.set('view engine', 'ejs');
 app.use('/static', express.static('server/public'))
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+    let callers = await db.caller.findAll();
+    for(let i=0; i < callers.length; i++){
+        let caller = callers[i];
+        caller.dataValues.team = await caller.getTeam();
+        caller.dataValues.calls = await caller.getCalls();
+    }
+
     const clientData = {
-        name: 'potato'
+        callers,
     };
+
     res.render(`${__dirname}/views/index`, {
         clientData: JSON.stringify(clientData)
     });
 });
 
-app.listen(port, () => console.log('Server is anton'));
+app.listen(port, () => console.log('Server is running'));
