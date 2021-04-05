@@ -1,16 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './components/App';
-import store from './store';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './components/App'
+import configureStore, { history } from './configureStore'
 
-// do everything in App, don't touch index
-ReactDOM.render(
-  <React.StrictMode>
+const store = configureStore()
+const render = () => {
+  ReactDOM.render(
     <Provider store={store}>
-    <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+      <App history={history} />
+    </Provider>,
+    document.getElementById('root')
+  )
+}
+
+render()
+
+// Hot reloading
+if (module.hot) {
+  // Reload components
+  module.hot.accept('./components/App', () => {
+    render()
+  })
+}

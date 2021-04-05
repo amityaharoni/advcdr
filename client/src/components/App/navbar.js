@@ -1,8 +1,14 @@
+import { Link } from 'react-router-dom'
+
 function Navbar() {
     return (
         <table>
             <tr>
-                <td><a href='teamlist.php'>Teams</a></td>
+                <td>
+                    <Link to={'/teams'}>
+                        Teams
+                    </Link>
+                </td>
                 <td><a href='stafflist.php'>Staff</a></td>
                 <td><a href='report.php'>Report</a></td>
                 <td><a href='report_avg.php'>Report_Average</a></td>

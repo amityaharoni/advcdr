@@ -1,46 +1,18 @@
-import './index.scss';
-import Navbar from './navbar';
-import Report from './report';
-import { CallerDateForm } from './callerDateFilter';
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom'
+import React from 'react'
+import PropTypes from 'prop-types'
+import { ConnectedRouter } from 'connected-react-router'
+import routes from '../../routes'
 
-function App() {
+const App = ({ history }) => {
   return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <React.Fragment>
-                <h1>AdvCDR</h1>
-                <Report />
-                {/* <CallerDateForm /> */}
-              </React.Fragment>
-            )}
-          />
-          <Route
-            exact
-            path="/teams"
-            render={() => (
-              <React.Fragment>
-                <h1>Teams</h1>
-              </React.Fragment>
-            )}
-          />
-          <Redirect to="/" />
-        </Switch>
-      </Router>
-    </div>
-  );
+    <ConnectedRouter history={history}>
+      {routes}
+    </ConnectedRouter>
+  )
 }
 
-export default App;
+App.propTypes = {
+  history: PropTypes.object,
+}
+
+export default App
