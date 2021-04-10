@@ -7,11 +7,13 @@ import Caller from './Caller';
 
 class Callers extends React.PureComponent {
     componentDidMount() {
+        console.log(2);
         if (!this.props.callers) {
             this.props.createApiAction({ 
                 url: CALLERS_ADD, 
-                params: {id: 6},
+                // params: {id: 6},
                 onSuccess: response => {
+                    console.log(response.data)
                     this.props.createSetCallersAction(response.data);
                 }
             });

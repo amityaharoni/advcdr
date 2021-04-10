@@ -1,20 +1,22 @@
+const { DIR_ROOT } = require('../lib/constants');
 const express = require('express');
 const apiRoutes = require('./api');
 const router = express.Router();
+const db = require("../models");
 
 router.get('/', async (req, res) => {
     let callers = await db.caller.findAll();
     for(let i=0; i < callers.length; i++){
         let caller = callers[i];
         caller.dataValues.team = await caller.getTeam();
-        caller.dataValues.calls = await caller.getCalls();
+        // caller.dataValues.calls = await caller.getCalls();
     }
 
     const clientData = {
         callers,
     };
 
-    res.render(`${__dirname}/views/index`, {
+    res.render(`${__dirname}/../views/index`, {
         clientData: JSON.stringify(clientData)
     });
 });

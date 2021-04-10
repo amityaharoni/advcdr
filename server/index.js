@@ -1,10 +1,9 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const db = require("./models");
 const routes = require('./routes');
 const app = express();
-const port = 1234;
+const port = 3000;
 
 app.use(cors());
 app.set('view engine', 'ejs');
