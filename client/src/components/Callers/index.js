@@ -7,21 +7,18 @@ import Caller from './Caller';
 
 class Callers extends React.PureComponent {
     componentDidMount() {
-        console.log(2);
-        if (!this.props.callers) {
-            this.props.createApiAction({ 
-                url: CALLERS_ADD, 
-                // params: {id: 6},
-                onSuccess: response => {
-                    console.log(response.data)
-                    this.props.createSetCallersAction(response.data);
-                }
-            });
-        }
+        this.props.createApiAction({
+            url: CALLERS_ADD,
+            // params: {id: 6},
+            onSuccess: response => {
+                console.log(response.data)
+                this.props.createSetCallersAction(response.data);
+            }
+        });
     }
 
     render() {
-        const {callers} = this.props;
+        const { callers } = this.props;
 
         return (
             <div>
@@ -35,6 +32,6 @@ const mapsStateToProps = state => ({
     callers: state.callers
 })
 
-const mapsDispatchToProps = {createSetCallersAction, createApiAction};
+const mapsDispatchToProps = { createSetCallersAction, createApiAction };
 
 export default connect(mapsStateToProps, mapsDispatchToProps)(Callers);
