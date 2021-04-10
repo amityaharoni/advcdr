@@ -4,7 +4,7 @@ const apiRoutes = require('./api');
 const router = express.Router();
 const db = require("../models");
 
-router.get('/', async (req, res) => {
+router.use('/', async (req, res) => {
     let callers = await db.caller.findAll();
     for(let i=0; i < callers.length; i++){
         let caller = callers[i];
@@ -16,11 +16,19 @@ router.get('/', async (req, res) => {
         callers,
     };
 
-    res.render(`${__dirname}/../views/index`, {
+    res.render(`${DIR_ROOT}/views/index`, {
         clientData: JSON.stringify(clientData)
     });
 });
 
 router.use('/api', apiRoutes)
+
+router.use('/*', (req, res) => {
+    res.sendFile(`${DIR_ROOT}/views/index`, function(err) {
+        if (err) {
+          res.status(500).send(err)
+        }
+      })
+})
 
 module.exports = router;
