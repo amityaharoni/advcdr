@@ -4,7 +4,7 @@ import callersReducer from './callersReducer'
 
 const rootReducer = (history) => combineReducers({
     router: connectRouter(history),
-    callers: callersReducer
+    callers: callersReducer,
 })
 
 export default rootReducer

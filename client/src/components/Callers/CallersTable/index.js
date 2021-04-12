@@ -11,24 +11,34 @@ import CallerRow from './CallerRow'
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 650,
+        minWidTableCell: 650,
     },
 });
 
 const CallersTable = props => {
     const classes = useStyles();
-    const {callers} = props;
+    const { callers } = props;
 
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell align="right">name</TableCell>
-                        {/* <TableCell>attempts</TableCell> */}
-                        <TableCell align="right">handle</TableCell>
-                        <TableCell align="right">extenstion</TableCell>
-                        <TableCell align="right">teamId</TableCell>
+                        <TableCell align="right">TL Extension</TableCell>
+                        <TableCell align="right">Team Leader</TableCell>
+                        <TableCell align="right">Handle</TableCell>
+                        <TableCell align="right">Attempts</TableCell>
+                        <TableCell align="right">Unique Called Numbers</TableCell>
+                        <TableCell align="right">Answered (more than 20sec)</TableCell>
+                        <TableCell align="right">less Than 2 mins</TableCell>
+                        <TableCell align="right"> 2 mins (120 s)</TableCell>
+                        <TableCell align="right"> 7 mins (420 s)</TableCell>
+                        <TableCell align="right">% of answered</TableCell>
+                        <TableCell align="right">% more TableCellan 2 mins</TableCell>
+                        <TableCell align="right">% more TableCellan 7 mins</TableCell>
+                        <TableCell align="right">Ratio 7m/2m</TableCell>
+                        <TableCell align="right">% No Answer</TableCell>
+                        <TableCell align="right">Total Call Duration</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

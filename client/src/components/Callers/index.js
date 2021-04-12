@@ -12,6 +12,7 @@ class Callers extends React.PureComponent {
             // params: {id: 6},
             onSuccess: response => {
                 this.props.createSetCallersAction(response.data);
+                // console.log(response.data);
             },
             onError: res => {console.log(res)}
         });

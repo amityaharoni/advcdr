@@ -4,6 +4,8 @@ const CallersController = require('./controller');
 const router = express.Router();
 const callersController = new CallersController();
 
+router.get('/calls/:callerExt', callersController.getCaller)
+
 router.get('/', callersController.getCallers)
 
 module.exports = router;
